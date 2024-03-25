@@ -1,0 +1,44 @@
+// Definindo os breakpoints
+$breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px
+);
+
+// Mixin para gerar as media queries
+@mixin media-breakpoint-up($breakpoint: xs) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    @if $breakpoint-value != null and $breakpoint-value != 0 {
+        @media (min-width: $breakpoint-value) {
+            @content;
+        }
+    } @else if $breakpoint-value == 0 {
+        @content;
+    }
+}
+
+
+//// Exemplo de uso
+//.container {
+//    width: 100%;
+//
+//    @include media-breakpoint-up(sm) {
+//        width: 540px;
+//    }
+//
+//    @include media-breakpoint-up(md) {
+//        width: 720px;
+//    }
+//
+//    @include media-breakpoint-up(lg) {
+//        width: 960px;
+//    }
+//
+//    @include media-breakpoint-up(xl) {
+//        width: 1140px;
+//    }
+//}
