@@ -86,6 +86,8 @@ header {
         align-items: center;
         padding: 15px 17px;
         cursor: pointer;
+        text-decoration: none;
+        color: white;
     }
     .children {
         display: none;
@@ -98,9 +100,19 @@ header {
     }
 
     .child {
-        padding: 15px;
         cursor: pointer;
         transition: 200ms;
+        height: 100%;
+        a{
+            font-size: 15px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            padding: 15px;
+        }
     }
 
     .child:hover {

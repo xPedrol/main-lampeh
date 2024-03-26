@@ -1,3 +1,4 @@
+@import '@fortawesome/fontawesome-free/css/all.css';
 @font-face {
     font-family: 'Roboto';
     src: url("../fonts/Roboto/Roboto-Bold.ttf") format("truetype");
@@ -75,3 +76,8 @@
     font-weight: 400;
     font-style: italic;
 }
+
+.roboto-condensed {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+$text-muted:#4f4f4f;

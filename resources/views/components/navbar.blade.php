@@ -36,12 +36,15 @@
         <ul class="ul-nav">
             @foreach($nav as $item)
                 <li class="li-nav">
-                    <a onclick="children_hover(`mobile-children-{{$item['label']}}`)"
+                    <a @if(!isset($item['children'])) href="{{route($item['label'])}}"
+                       @endif onclick="children_hover(`mobile-children-{{$item['label']}}`)"
                        class="@if(isset($item['children'])) has-children @endif">{{$item['title']}}</a>
                     @if(isset($item['children']))
                         <ul id="mobile-children-{{$item['label']}}" class="children">
                             @foreach($item['children'] as $child)
-                                <li class="child">{{$child['title']}}</li>
+                                <li class="child">
+                                    <a href="{{route($child['label'])}}">{{$child['title']}}</a>
+                                </li>
                             @endforeach
                         </ul>
                     @endif
@@ -53,7 +56,8 @@
         <ul class="ul-nav">
             @foreach($nav as $item)
                 <li class="li-nav">
-                    <a id="{{$item['label']}}" onmouseenter="children_hover(`children-{{$item['label']}}`)"
+                    <a @if(!isset($item['children'])) href="{{route($item['label'])}}" @endif id="{{$item['label']}}"
+                       onmouseenter="children_hover(`children-{{$item['label']}}`)"
                        onmouseleave="children_hover(`children-{{$item['label']}}`)"
                        class="@if(isset($item['children'])) has-children @endif">{{$item['title']}}</a>
                     @if(isset($item['children']))
@@ -61,7 +65,9 @@
                             onmouseenter="children_hover(`children-{{$item['label']}}`)"
                             onmouseleave="children_hover(`children-{{$item['label']}}`)">
                             @foreach($item['children'] as $child)
-                                <li class="child">{{$child['title']}}</li>
+                                <li class="child">
+                                    <a href="{{route($child['label'])}}">{{$child['title']}}</a>
+                                </li>
                             @endforeach
                         </ul>
                     @endif

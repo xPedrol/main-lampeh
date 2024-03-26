@@ -74,10 +74,6 @@ class Navbar extends Component
                     ]
                 ]
             ],
-            [
-                'title' => 'Links Úteis',
-                'label' => 'links-uteis',
-            ],
         ];
     }
 
