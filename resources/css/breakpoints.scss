@@ -20,7 +20,17 @@ $breakpoints: (
         @content;
     }
 }
+@mixin media-breakpoint-down($breakpoint: xs) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
 
+    @if $breakpoint-value != null and $breakpoint-value != 0 {
+        @media (max-width: $breakpoint-value) {
+            @content;
+        }
+    } @else if $breakpoint-value == 0 {
+        @content;
+    }
+}
 
 //// Exemplo de uso
 //.container {

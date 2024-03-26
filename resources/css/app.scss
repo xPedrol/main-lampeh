@@ -1,8 +1,79 @@
 @import "fonts";
 @import '@fortawesome/fontawesome-free/css/all.css';
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+}
+
+html, body {
+    background-color: #f6f6f6;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 30px;
+}
+
+.col-3 {
+    grid-column: span 3;
+}
+
+.col-4 {
+    grid-column: span 4;
+}
+
+.col-6 {
+    grid-column: span 6;
+}
+
+.col-8 {
+    grid-column: span 8;
+}
+
+.col-12 {
+    grid-column: span 12;
+}
+
+.container {
+    max-width: 1070px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 35px 0;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #f2f2f2;
+}
+
+.banner {
+    margin: 5px 10px;
+    display: flex;
+    //box-shadow: 0 0 4px #999;
+    clear: both;
+    //margin-bottom: 17px;
+    justify-content: center;
+    align-items: center;
+    width: 289px;
+    height: 80px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #4f4f4f;
+}
+.destaques-title{
+    margin-bottom: 20px;
+}
+.img-carousel{
+    transition: 2s ease-in-out;
+    max-width: 660px;
+    max-height: 270px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
