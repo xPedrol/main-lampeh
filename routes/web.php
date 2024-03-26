@@ -12,7 +12,7 @@ Route::get('/historico', function () {
     return view('historico');
 })->name('historico');
 Route::get('/equipe', function () {
-    return view('quem-somos');
+    return view('equipe');
 })->name('equipe');
 Route::get('/projetos', function () {
     return view('quem-somos');
@@ -23,25 +23,25 @@ Route::get('/infraestrutura', function () {
 })->name('infraestrutura');
 
 Route::get('/instalacoes', function () {
-    return view('quem-somos');
+    return view('instalacoes');
 })->name('instalacoes');
 
 Route::get('/equipamentos', function () {
-    return view('quem-somos');
+    return view('equipamentos');
 })->name('equipamentos');
 
 Route::get('/convenios', function () {
-    return view('quem-somos');
+    return view('convenios');
 })->name('convenios');
 
 Route::get('/publicacoes', function () {
-    return view('quem-somos');
+    return view('publicacoes');
 })->name('publicacoes');
 
 Route::get('/estagio-voluntario', function () {
     return view('quem-somos');
 })->name('estagio-voluntario');
 
-Route::get('/endereco', function () {
-    return view('quem-somos');
-})->name('endereco');
+Route::get('/contato', function () {
+    return view('contato');
+})->name('contato');

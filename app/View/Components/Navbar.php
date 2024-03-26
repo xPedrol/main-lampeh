@@ -66,13 +66,7 @@ class Navbar extends Component
             ],
             [
                 'title' => 'Contato',
-                'label' => 'contato',
-                'children' => [
-                    [
-                        'title' => 'Endereço',
-                        'label' => 'endereco'
-                    ]
-                ]
+                'label' => 'contato'
             ],
         ];
     }

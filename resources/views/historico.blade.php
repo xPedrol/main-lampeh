@@ -1,5 +1,5 @@
 <x-layout>
-    @vite('/resources/css/quem-somos.scss')
+    @vite('resources/css/quem-somos.scss')
     <x-slot name="title">Histórico</x-slot>
     <div class="card">
         <p>O Laboratório Multimídia de Pesquisa Histórica (LAMPEH) foi criado em 2004 com a finalidade de contribuir

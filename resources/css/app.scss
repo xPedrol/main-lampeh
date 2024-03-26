@@ -27,7 +27,10 @@ html, body {
         padding: 35px 30px;
     }
 }
-
+.sticky{
+    position: sticky;
+    top: 30px;
+}
 .card {
     background-color: white;
     padding: 20px;

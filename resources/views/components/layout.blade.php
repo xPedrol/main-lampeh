@@ -25,41 +25,43 @@
             {{$slot}}
         </div>
         <aside class="col-12 col-lg-4">
-            <div class="card destaques">
-                <h3 class="destaques-title roboto-condensed">Destaques</h3>
-                <div class="banner">
-                    Projeto Acervos de Minas Gerais
-                    <br/>
-                    Casa Setecentista de Mariana/IPHAN
+            <div class="sticky">
+                <div class="card destaques">
+                    <h3 class="destaques-title roboto-condensed">Destaques</h3>
+                    <div class="banner">
+                        Projeto Acervos de Minas Gerais
+                        <br/>
+                        Casa Setecentista de Mariana/IPHAN
+                    </div>
+                    <div class="banner">
+                        Projeto Arquivo Câmara Municipal de Viçosa
+                    </div>
+                    <div class="banner">
+                        Curso de Especialização em Arqueologia
+                    </div>
+                    <div class="banner">
+                        Patrimônio Arqueológico
+                    </div>
                 </div>
-                <div class="banner">
-                    Projeto Arquivo Câmara Municipal de Viçosa
+                <div class="card nos-encontre mt-30">
+                    <h3 class="destaques-title roboto-condensed">Nos encontre</h3>
+                    <hr/>
+                    <h4>
+                        Endereço
+                    </h4>
+                    <p style="font-weight: 300">
+                        Edifício da GeoHistória – UFV
+                    </p>
+                    <p style="font-weight: 300">
+                        Rua Purdue, 632
+                    </p>
+                    <p style="font-weight: 300">
+                        Santo Antonio, Viçosa – MG
+                    </p>
+                    <p style="font-weight: 300">
+                        CEP: 36579-900
+                    </p>
                 </div>
-                <div class="banner">
-                    Curso de Especialização em Arqueologia
-                </div>
-                <div class="banner">
-                    Patrimônio Arqueológico
-                </div>
-            </div>
-            <div class="card nos-encontre mt-30">
-                <h3 class="destaques-title roboto-condensed">Nos encontre</h3>
-                <hr/>
-                <h4>
-                    Endereço
-                </h4>
-                <p style="font-weight: 300">
-                    Edifício da GeoHistória – UFV
-                </p>
-                <p style="font-weight: 300">
-                    Rua Purdue, 632
-                </p>
-                <p style="font-weight: 300">
-                    Santo Antonio, Viçosa – MG
-                </p>
-                <p style="font-weight: 300">
-                    CEP: 36579-900
-                </p>
             </div>
         </aside>
     </div>

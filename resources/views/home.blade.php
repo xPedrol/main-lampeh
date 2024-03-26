@@ -1,4 +1,4 @@
-@vite('/resources/css/home.scss')
+@vite('resources/css/home.scss')
 <x-layout>
     <div class="card">
         <div class="carousel">
