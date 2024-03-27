@@ -1,7 +1,13 @@
 <?php
 
+use App\Http\Controllers\Controller;
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
+Route::controller(Controller::class)->group(function () {
+    Route::get('/entrar', 'login')->name('login');
+    Route::get('/registrar', 'register')->name('register');
+})->middleware(Authenticate::class);
 Route::get('/', function () {
     return view('home');
 })->name('home');

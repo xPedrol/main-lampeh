@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Config;
 
 class User extends Authenticatable
 {
@@ -20,6 +22,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'createdAt',
+        'updatedAt',
+        'active',
+        'token'
     ];
 
     /**
@@ -29,19 +35,23 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    public function getFormatedCreatedAt()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        $data = Carbon::parse($this->createdAt)->tz(Config::get('app.default_timezone'));
+        return $data->format('d/m/Y H:i') . ' - ' . $data->diffForHumans();
+    }
+
+    public function getFormatedUpdatedAt()
+    {
+
+        $data = Carbon::parse($this->updatedAt)->tz(Config::get('app.default_timezone'));
+        return $data->format('d/m/Y H:i') . ' - ' . $data->diffForHumans();
+    }
+
+    public function isActive()
+    {
+        return $this->active == '1';
     }
 }
