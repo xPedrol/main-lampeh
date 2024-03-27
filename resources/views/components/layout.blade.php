@@ -22,25 +22,35 @@
             </div>
         @endif
         <div class="col-12 col-lg-8">
-            {{$slot}}
+            <main>
+                {{$slot}}
+            </main>
         </div>
         <aside class="col-12 col-lg-4">
             <div class="sticky">
                 <div class="card destaques">
                     <h3 class="destaques-title roboto-condensed">Destaques</h3>
                     <div class="banner">
-                        Projeto Acervos de Minas Gerais
-                        <br/>
-                        Casa Setecentista de Mariana/IPHAN
+                        <a target="_blank" href="https://casasetecentista.lampeh.ufv.br">
+                            Projeto Acervos de Minas Gerais
+                            <br/>
+                            Casa Setecentista de Mariana/IPHAN
+                        </a>
                     </div>
                     <div class="banner">
-                        Projeto Arquivo Câmara Municipal de Viçosa
+                        <a target="_blank" href="https://arquivocamaravicosa.lampeh.ufv.br">
+                            Projeto Arquivo Câmara Municipal de Viçosa
+                        </a>
                     </div>
                     <div class="banner">
-                        Curso de Especialização em Arqueologia
+                        <a target="_blank" href="https://posarqueologia.ufv.br">
+                            Curso de Especialização em Arqueologia
+                        </a>
                     </div>
                     <div class="banner">
-                        Patrimônio Arqueológico
+                        <a target="_blank" href="https://arqueologia.lampeh.ufv.br">
+                            Patrimônio Arqueológico
+                        </a>
                     </div>
                 </div>
                 <div class="card nos-encontre mt-30">
@@ -49,16 +59,16 @@
                     <h4>
                         Endereço
                     </h4>
-                    <p style="font-weight: 300">
+                    <p>
                         Edifício da GeoHistória – UFV
                     </p>
-                    <p style="font-weight: 300">
+                    <p>
                         Rua Purdue, 632
                     </p>
-                    <p style="font-weight: 300">
+                    <p>
                         Santo Antonio, Viçosa – MG
                     </p>
-                    <p style="font-weight: 300">
+                    <p>
                         CEP: 36579-900
                     </p>
                 </div>

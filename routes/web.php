@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 Route::get('/quem-somos', function () {
     return view('quem-somos');
 })->name('quem-somos');
@@ -39,7 +39,7 @@ Route::get('/publicacoes', function () {
 })->name('publicacoes');
 
 Route::get('/estagio-voluntario', function () {
-    return view('quem-somos');
+    return view('estagio-voluntario');
 })->name('estagio-voluntario');
 
 Route::get('/contato', function () {

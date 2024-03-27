@@ -30,7 +30,9 @@
         <button class="btn-menu" onclick="toggle_mobile_nav()">
             <i class="fa-solid fa-bars"></i>
         </button>
-        <img class="logo" src="{{asset('/logo.png')}}">
+        <a href="{{route('home')}}">
+            <img alt="logo_lampeh" class="logo" src="{{asset('/logo.webp')}}">
+        </a>
     </div>
     <nav id="mobile-nav" class="mobile-nav">
         <ul class="ul-nav">
