@@ -14,11 +14,18 @@ class Navbar extends Component
      * Create a new component instance.
      */
     public function __construct()
+    {}
+
+    /**
+     * Get the view / contents that represent the component.
+     */
+    public function render(): View|Closure|string
     {
         $this->nav = [
             [
                 'title' => 'O Laboratório',
                 'label' => 'laboratorio',
+                'show' => true,
                 'children' => [
                     [
                         'title' => 'Quem somos',
@@ -37,10 +44,12 @@ class Navbar extends Component
             [
                 'title' => 'Projetos',
                 'label' => 'projetos',
+                'show' => true,
             ],
             [
                 'title' => 'Infraestrutura',
                 'label' => 'infraestrutura',
+                'show' => true,
                 'children' => [
                     [
                         'title' => 'Instalações',
@@ -55,27 +64,39 @@ class Navbar extends Component
             [
                 'title' => 'Convênios',
                 'label' => 'convenios',
+                'show' => true,
             ],
             [
                 'title' => 'Publicações',
                 'label' => 'publicacoes',
+                'show' => true,
             ],
             [
                 'title' => 'Estágio Voluntário',
                 'label' => 'estagio-voluntario',
+                'show' => true,
             ],
             [
                 'title' => 'Contato',
-                'label' => 'contato'
+                'label' => 'contato',
+                'show' => true,
+            ],
+            [
+                'title' => 'Configurações',
+                'label' => 'config',
+                'show' => auth()->check(),
+                'children' => [
+                    [
+                        'title' => 'Informativos',
+                        'label' => 'informativos'
+                    ],
+                    [
+                        'title' => 'Sair',
+                        'label' => 'logout'
+                    ],
+                ]
             ],
         ];
-    }
-
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
         return view('components.navbar', ['nav' => $this->nav]);
     }
 }

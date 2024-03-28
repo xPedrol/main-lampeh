@@ -1,13 +1,29 @@
 <?php
 
 use App\Http\Controllers\Controller;
-use App\Http\Middleware\Authenticate;
+use App\Http\Middleware\EnsureAuthIsNotValid;
+use App\Http\Middleware\EnsureAuthIsValid;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(Controller::class)->group(function () {
-    Route::get('/entrar', 'login')->name('login');
-    Route::get('/registrar', 'register')->name('register');
-})->middleware(Authenticate::class);
+    Route::middleware(EnsureAuthIsNotValid::class)->group(function () {
+        Route::get('/entrar', 'login')->name('login');
+        Route::get('/registrar', 'register')->name('register');
+        Route::post('/entrando', 'logging')->name('logging');
+        Route::post('/registrando', 'registering')->name('registering');
+    });
+
+
+    Route::middleware(EnsureAuthIsValid::class)->group(function () {
+        Route::get('/informativos', function () {
+            return view('informativos');
+        })->name('informativos');
+        Route::get('/sair', 'logout')->name('logout');
+    });
+
+    Route::post('/estagio-voluntario', 'estagioVoluntario')->name('estagio-voluntario');
+    Route::get('/projetos', 'projetos')->name('projetos');
+});
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -20,9 +36,6 @@ Route::get('/historico', function () {
 Route::get('/equipe', function () {
     return view('equipe');
 })->name('equipe');
-Route::get('/projetos', function () {
-    return view('quem-somos');
-})->name('projetos');
 
 Route::get('/infraestrutura', function () {
     return view('quem-somos');

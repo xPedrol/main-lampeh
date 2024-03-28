@@ -12,7 +12,8 @@ return [
     | other UI elements where an application name needs to be displayed.
     |
     */
-
+    'mail_host' => env('MAIL_USERNAME', 'estatisticas.lampeh@gmail.com'),
+    'mail_password' => env('MAIL_PASSWORD', ''),
     'name' => env('APP_NAME', 'Laravel'),
 
     /*
@@ -39,7 +40,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -78,11 +79,11 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'en'),
+    'locale' => env('APP_LOCALE', 'pt-br'),
 
-    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
+    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'pt-br'),
 
-    'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
+    'faker_locale' => env('APP_FAKER_LOCALE', 'pt-br'),
 
     /*
     |--------------------------------------------------------------------------
@@ -122,5 +123,12 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+
+//    'providers' => [
+//        Illuminate\Auth\AuthServiceProvider::class,
+//        App\Providers\AppServiceProvider::class,
+//        App\Providers\AuthServiceProvider::class,
+//    ],
+
 
 ];

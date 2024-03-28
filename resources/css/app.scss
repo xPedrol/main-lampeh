@@ -15,33 +15,36 @@ html, body {
 }
 
 
-
 .container {
     max-width: 1070px;
     width: 100%;
     margin: 0 auto;
     padding: 35px 0;
-}
-@include media-breakpoint-down(xl){
-    .container {
+    @include media-breakpoint-down(xl) {
         padding: 35px 30px;
     }
+    @include media-breakpoint-down(sm) {
+        padding: 35px 10px;
+    }
 }
-.sticky{
+
+.sticky {
     position: sticky;
     top: 30px;
 }
+
 .card {
     background-color: white;
     padding: 20px;
     border: 1px solid #f2f2f2;
 }
 
-.gray-card{
+.gray-card {
     @extend .card;
     background-color: #47535d;
     color: white;
 }
+
 .banner {
     margin: 5px 0px;
     display: flex;
@@ -57,11 +60,13 @@ html, body {
     text-align: center;
     font-size: 13px;
     font-weight: 700;
-    a{
+
+    a {
         text-decoration: none;
         color: $text-muted;
     }
-    a:hover{
+
+    a:hover {
         color: #569967;
     }
 }
@@ -106,4 +111,33 @@ html, body {
     a {
         text-decoration: none;
     }
+}
+
+.alert {
+    width: 100%;
+    padding: 15px;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
+
+.alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
 }

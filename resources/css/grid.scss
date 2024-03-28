@@ -1,4 +1,5 @@
 @import "breakpoints";
+
 .grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -29,18 +30,23 @@
 .col-3 {
     @include col-3;
 }
+
 .col-4 {
     @include col-4;
 }
+
 .col-6 {
     @include col-6;
 }
+
 .col-8 {
     @include col-8;
 }
+
 .col-12 {
     @include col-12;
 }
+
 @include media-breakpoint-up(md) {
     .col-md-3 {
         @include col-3;
@@ -58,6 +64,7 @@
         @include col-12;
     }
 }
+
 @include media-breakpoint-up(lg) {
     .col-lg-3 {
         @include col-3;
@@ -75,6 +82,7 @@
         @include col-12;
     }
 }
+
 @include media-breakpoint-up(xl) {
     .col-xl-3 {
         @include col-3;
@@ -92,6 +100,64 @@
         @include col-12;
     }
 }
-.mt-30{
+
+.mt-30 {
     margin-top: 30px;
+}
+
+.mb-30 {
+    margin-bottom: 30px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mb-15 {
+    margin-bottom: 15px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    font-size: 14px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    align-content: start;
+
+    tr {
+        border-bottom: 1px solid rgba(34, 36, 38, .15) !important;
+    }
+
+    th {
+        background-color: #fafafb;
+        text-align: left;
+        font-family: "Roboto Condensed", sans-serif;
+    }
+
+    tr:nth-child(even) {
+        background-color: #fafafb;
+    }
+
+    td, th {
+        padding: 10px;
+        vertical-align: top;
+        p{
+            @extend .truncate;
+        }
+    }
+}
+.no-wrap{
+    white-space: nowrap;
+}
+.truncate {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
 }

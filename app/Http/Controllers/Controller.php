@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 
+use App\Jobs\SendEmailJob;
+use App\Models\Informative;
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 
 class Controller
 {
@@ -30,7 +34,7 @@ class Controller
         if ($user && $user["active"] != 1) {
             return redirect()->route('login')->with('error', 'Email não confirmado');
         }
-        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+        if (Auth::attempt(['email' => $email, 'password' => $password, 'active' => 1])) {
             if ($redirectUrl) {
                 return redirect($redirectUrl);
             }
@@ -58,13 +62,14 @@ class Controller
         }
         $user = new User();
         $user->email = $request['email'];
-        $user->password = sha1($request['password']);
+        $user->password = bcrypt($request['password']);
         $user->name = $request['name'];
         $token = base64_encode(random_bytes(12)); // Gera 12 bytes de dados aleatórios e converte para uma string base64
         $token = substr($token, 0, 10); // Corta a string para 10 caracteres
         $user->token = $token;
-        $user->createdAt = now();
-        $user->updatedAt = now();
+        $user->created_at = now();
+        $user->updated_at = now();
+        $user->active = 0;
         $storedUser = User::where('email', $user->email)->first();
         if ($storedUser != null) {
             return back()->with('error', 'Email já cadastrado');
@@ -83,7 +88,7 @@ class Controller
                 'title' => "Olá, " . $user->name . ".",
                 'body' => $body
             ];
-//            dispatch(new SendEmailJob($details));
+            dispatch(new SendEmailJob($details));
 //            MailHelper::instance()->sendMail($subject, $body, $user);
             return redirect()->route('login')->with('success', 'Usuário cadastrado com sucesso! Um link de confirmação foi enviado para seu email.');
         } else {
@@ -102,5 +107,30 @@ class Controller
     public function forgotPassword(Request $request)
     {
         return view('auth.forgotPassword');
+    }
+
+    public function estagioVoluntario(Request $request): RedirectResponse
+    {
+        $registerValidated = $request->validate([
+            'name' => 'required',
+            'email' => 'required'
+
+        ]);
+        $body = "Email: " . $request['email'] . ".<br/><br/>";
+        $body .= $request['message'];
+        $details = [
+            'email' => $request['email'],
+            'subject' => 'Estágio Voluntário',
+            'title' => "Mensagem de " . $request['name'],
+            'body' => $body
+        ];
+        dispatch(new SendEmailJob($details));
+        return redirect()->back()->with('success', 'Mensagem enviada com sucesso!');
+    }
+
+    public function projetos()
+    {
+        $projects = Project::get();
+        return view('projetos', ['projects' => $projects]);
     }
 }
