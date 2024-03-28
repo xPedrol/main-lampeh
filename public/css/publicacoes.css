@@ -1,0 +1,17 @@
+main ul {
+  list-style: -moz-ethiopic-numeric;
+}
+main p {
+  line-height: 1 !important;
+  font-size: 15px;
+}
+main h3 {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+main h3:first-child {
+  margin-top: 0;
+}
+main a {
+  word-wrap: break-word;
+}

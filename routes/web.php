@@ -15,18 +15,18 @@ Route::controller(Controller::class)->group(function () {
 
 
     Route::middleware(EnsureAuthIsValid::class)->group(function () {
-        Route::get('/informativos', function () {
-            return view('informativos');
-        })->name('informativos');
+        Route::prefix('/admin')->group(function () {
+            Route::match(['POST', 'GET'], '/informativos', 'adminInformativos')->name('admin-informativos');
+        });
         Route::get('/sair', 'logout')->name('logout');
     });
 
+    Route::get('/', 'home')->name('home');
     Route::post('/estagio-voluntario', 'estagioVoluntario')->name('estagio-voluntario');
     Route::get('/projetos', 'projetos')->name('projetos');
+    Route::match(['POST', 'GET'], '/informativo/{id}', 'informativo')->name('informativo');
 });
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+
 Route::get('/quem-somos', function () {
     return view('quem-somos');
 })->name('quem-somos');

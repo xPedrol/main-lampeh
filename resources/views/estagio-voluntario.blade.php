@@ -1,8 +1,11 @@
 <x-layout>
-    @vite(['resources/css/estagio-voluntario.scss','resources/css/form.scss'])
+    <x-slot name="assets">
+        <link href="{{ asset('css/form.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/estagio-voluntario.css') }}" rel="stylesheet">
+    </x-slot>
     <x-slot name="title">Estágio Voluntário</x-slot>
     <div class="card">
-        <p>Preencha o formulário abaixo para se cadastrar como um voluntário do projeto</p>
+        <p class="mb-30">Preencha o formulário abaixo para se cadastrar como um voluntário do projeto</p>
         <form action="{{route('estagio-voluntario')}}" method="POST">
             @method('POST')
             @csrf

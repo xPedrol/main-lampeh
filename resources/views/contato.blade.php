@@ -30,7 +30,10 @@
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=SUA_CHAVE_API&callback=initMap">
     </script>
-    @vite(['resources/css/quem-somos.scss','resources/css/contato.scss'])
+    <x-slot name="assets">
+        <link href="{{ asset('css/quem-somos.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/contato.css') }}" rel="stylesheet">
+    </x-slot>
     <x-slot name="title">Contato</x-slot>
     <div class="card">
         <h3>Endereço</h3>
@@ -46,14 +49,13 @@
             width="600" height="350" style="border:0;" allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
 
-        <h3>Telefones</h3>
+        <h3 class="mb-30">Telefones</h3>
         <p>
             (32) 3613-7427
             <br/>
-            <br/>
             (31) 3612-7425 (DHI)
         </p>
-        <h3>Email</h3>
+        <h3 class="mb-30">Email</h3>
         <p>jonasqueiroz@ufv.br</p>
     </div>
 </x-layout>

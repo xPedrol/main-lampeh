@@ -1,5 +1,8 @@
 <x-layout>
-    @vite(['resources/css/estagio-voluntario.scss','resources/css/form.scss'])
+    <x-slot name="assets">
+        <link href="{{ asset('css/estagio-voluntario.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/form.css') }}" rel="stylesheet">
+    </x-slot>
     <x-slot name="title">Registrar</x-slot>
     <div class="card">
         <form action="{{route('registering')}}" method="POST">

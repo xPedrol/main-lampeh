@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
 
 class Informative extends Model
@@ -21,9 +21,14 @@ class Informative extends Model
         'updated_at',
         'link',
         'message',
-        'title'
+        'title',
+        'expires_at'
     ];
     protected $table = 'informatives';
+
+//    protected $casts = [
+//        'expires_at' => 'datetime'
+//    ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -40,6 +45,13 @@ class Informative extends Model
     {
 
         $data = Carbon::parse($this->updated_at)->tz(Config::get('app.default_timezone'));
+        return $data->format('d/m/Y H:i') . ' - ' . $data->diffForHumans();
+    }
+
+    public function getFormatedExpiresAt()
+    {
+
+        $data = Carbon::parse($this->expires_at)->tz(Config::get('app.default_timezone'));
         return $data->format('d/m/Y H:i') . ' - ' . $data->diffForHumans();
     }
 }

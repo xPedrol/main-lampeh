@@ -82,19 +82,24 @@ class Navbar extends Component
                 'show' => true,
             ],
             [
-                'title' => 'Configurações',
-                'label' => 'config',
+                'title' => 'Administrador',
+                'label' => 'adm',
                 'show' => auth()->check(),
                 'children' => [
                     [
                         'title' => 'Informativos',
-                        'label' => 'informativos'
+                        'label' => 'admin-informativos'
                     ],
                     [
                         'title' => 'Sair',
                         'label' => 'logout'
                     ],
                 ]
+            ],
+            [
+                'title' => 'Entrar',
+                'label' => 'login',
+                'show' => !auth()->check(),
             ],
         ];
         return view('components.navbar', ['nav' => $this->nav]);

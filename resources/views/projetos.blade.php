@@ -1,7 +1,9 @@
 <x-layout :oneCol="true">
-    {{--    @vite('resources/css/quem-somos.scss')--}}
+    <x-slot name="assets">
+        <script src="{{ asset('js/projetos.js') }}" ></script>
+    </x-slot>
     <x-slot name="title">Projetos</x-slot>
-    <div class="card">
+    <div class="card responsive-table">
         <table>
             <thead>
             <tr>
@@ -13,7 +15,7 @@
             </thead>
             <tbody>
             @foreach($projects as $project)
-                <tr>
+                <tr id="{{$project->id}}" onmouseenter="extend({{$project->id}})" onmouseleave="reduce({{$project->id}})">
                     <td>
                         <p>{{$project->title}}</p>
                     </td>

@@ -1,0 +1,235 @@
+@import "breakpoints";
+
+.w-100{
+    width: 100% !important;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 30px;
+}
+
+.gap-5 {
+    gap: 5px;
+}
+
+.gap-10 {
+    gap: 10px;
+}
+
+.gap-25 {
+    gap: 25px;
+}
+
+@mixin col-6 {
+    grid-column: span 6;
+}
+
+@mixin col-3 {
+    grid-column: span 3;
+}
+
+@mixin col-4 {
+    grid-column: span 4;
+}
+
+
+@mixin col-8 {
+    grid-column: span 8;
+}
+
+@mixin col-12 {
+    grid-column: span 12;
+}
+
+.col-3 {
+    @include col-3;
+}
+
+.col-4 {
+    @include col-4;
+}
+
+.col-6 {
+    @include col-6;
+}
+
+.col-8 {
+    @include col-8;
+}
+
+.col-12 {
+    @include col-12;
+}
+
+@include media-breakpoint-up(md) {
+    .col-md-3 {
+        @include col-3;
+    }
+    .col-md-4 {
+        @include col-4;
+    }
+    .col-md-6 {
+        @include col-6;
+    }
+    .col-md-8 {
+        @include col-8;
+    }
+    .col-md-12 {
+        @include col-12;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .col-lg-3 {
+        @include col-3;
+    }
+    .col-lg-4 {
+        @include col-4;
+    }
+    .col-lg-6 {
+        @include col-6;
+    }
+    .col-lg-8 {
+        @include col-8;
+    }
+    .col-lg-12 {
+        @include col-12;
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .col-xl-3 {
+        @include col-3;
+    }
+    .col-xl-4 {
+        @include col-4;
+    }
+    .col-xl-6 {
+        @include col-6;
+    }
+    .col-xl-8 {
+        @include col-8;
+    }
+    .col-xl-12 {
+        @include col-12;
+    }
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mb-30 {
+    margin-bottom: 30px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mb-15 {
+    margin-bottom: 15px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    font-size: 14px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    align-content: start;
+
+    tr {
+        border-bottom: 1px solid rgba(34, 36, 38, .15) !important;
+    }
+
+    th {
+        background-color: #fafafb;
+        text-align: left;
+        font-family: "Roboto Condensed", sans-serif;
+    }
+
+    tr:nth-child(even) {
+        background-color: #fafafb;
+    }
+
+    td, th {
+        padding: 10px;
+        vertical-align: top;
+
+        p {
+            @extend .truncate;
+        }
+    }
+}
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+.truncate {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.d-none {
+    display: none;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.align-items-start {
+    align-items: start;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+@include media-breakpoint-down(sm) {
+    .d-sm-none{
+        display: none;
+    }
+}
+@include media-breakpoint-down(md) {
+    .d-md-none{
+        display: none;
+    }
+}
+.responsive-table{
+    width: 100%;
+    overflow: auto;
+}

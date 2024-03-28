@@ -4,7 +4,10 @@
             padding-left: 30px;
         }
     </style>
-    @vite(['resources/css/quem-somos.scss','resources/css/publicacoes.scss'])
+    <x-slot name="assets">
+        <link href="{{ asset('css/quem-somos.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/publicacoes.css') }}" rel="stylesheet">
+    </x-slot>
     <x-slot name="title">Publicações</x-slot>
     <div class="card">
         <h3 class="roboto-condensed">ARTIGOS E DISSERTAÇÕES PRODUZIDAS PELA EQUIPE DO LAMPEH</h3>

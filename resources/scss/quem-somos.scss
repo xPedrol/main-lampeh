@@ -1,0 +1,23 @@
+main {
+    p {
+        margin-bottom: 30px;
+        line-height: 1.9;
+        text-indent: 45px;
+        text-align: justify;
+    }
+
+    p:last-of-type {
+        margin-bottom: 0;
+    }
+
+    .no-ident {
+        text-indent: 0 !important;
+    }
+
+    .comment {
+        img {
+            border-radius: 50%;
+            border: 3px solid #47535d;
+        }
+    }
+}

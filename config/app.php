@@ -12,9 +12,10 @@ return [
     | other UI elements where an application name needs to be displayed.
     |
     */
+    'name' => env('APP_NAME', 'LAMPEH'),
+    'default_timezone' => env('DEFAULT_TIMEZONE', 'America/Sao_Paulo'),
     'mail_host' => env('MAIL_USERNAME', 'estatisticas.lampeh@gmail.com'),
     'mail_password' => env('MAIL_PASSWORD', ''),
-    'name' => env('APP_NAME', 'Laravel'),
 
     /*
     |--------------------------------------------------------------------------
@@ -79,11 +80,11 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'pt-br'),
+    'locale' => env('APP_LOCALE', 'pt_BR'),
 
-    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'pt-br'),
+    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'pt'),
 
-    'faker_locale' => env('APP_FAKER_LOCALE', 'pt-br'),
+    'faker_locale' => env('APP_FAKER_LOCALE', 'pt'),
 
     /*
     |--------------------------------------------------------------------------

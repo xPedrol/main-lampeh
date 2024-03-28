@@ -1,0 +1,16 @@
+main p {
+  margin-bottom: 30px;
+  line-height: 1.9;
+  text-indent: 45px;
+  text-align: justify;
+}
+main p:last-of-type {
+  margin-bottom: 0;
+}
+main .no-ident {
+  text-indent: 0 !important;
+}
+main .comment img {
+  border-radius: 50%;
+  border: 3px solid #47535d;
+}

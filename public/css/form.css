@@ -1,0 +1,27 @@
+main .form-control {
+  max-width: 700px;
+  margin: 0 auto;
+  row-gap: 10px !important;
+}
+main input, main textarea {
+  margin: 5px 0;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+main button {
+  cursor: pointer;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #47535d;
+  color: white;
+  float: right;
+}
+main button:hover {
+  opacity: 0.8;
+}
+main .tox-tinymce {
+  margin-top: 5px !important;
+  border-radius: 0 !important;
+}

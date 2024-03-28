@@ -1,5 +1,7 @@
 <x-layout>
-    @vite('resources/css/quem-somos.scss')
+    <x-slot name="assets">
+        <link href="{{ asset('css/quem-somos.css') }}" rel="stylesheet">
+    </x-slot>
     <x-slot name="title">Equipe</x-slot>
     <div class="card">
         <div class="elementor-text-editor elementor-clearfix">
@@ -12,14 +14,13 @@
                 também atuaram como bolsistas ou voluntários. Vários deles, assim como os pesquisadores e servidores
                 citados abaixo, estão relacionados nas equipes dos projetos (ver item Projetos).
             </p>
-            <p>
-                <strong>Coordenação:</strong>
-                <br/>
+            <h3 class="mb-30">Coordenação:</h3>
+            <p class="no-ident">
                 Jonas Marçal de Queiroz (DHI/UFV)
             </p>
-            <p>
-                <strong>Colaboradores:</strong>
-                <br/>Alcione de Paiva Oliveira (DPI/UFV))
+            <h3 class="mb-30">Colaboradores:</h3>
+            <p class="no-ident">
+                Alcione de Paiva Oliveira (DPI/UFV))
                 <br/>Alexandra Moreira (DPI/UFV)
                 <br/>Álvaro Antunes (DEHIS/UFOP)
                 <br/>Ana Paula Ribeiro Freitas (DHI/UFV)
