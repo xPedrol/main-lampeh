@@ -127,9 +127,11 @@ class Controller
             ]);
             $body = "Email: " . $request['email'] . ".<br/><br/>";
             $body .= $request['message'];
+            $hostEmail = Config::get('app.mail_host');
             $details = [
-                'email' => $request['email'],
-                'subject' => 'Estágio Voluntário',
+                'bcc' => $request['email'],
+                'email' => $hostEmail,
+                'subject' => 'Estágio Voluntário [LAMPEH]',
                 'title' => "Mensagem de " . $request['name'],
                 'body' => $body
             ];
