@@ -22,7 +22,7 @@ Route::controller(Controller::class)->group(function () {
     });
 
     Route::get('/', 'home')->name('home');
-    Route::post('/estagio-voluntario', 'estagioVoluntario')->name('estagio-voluntario');
+    Route::match(['GET', 'POST'], '/estagio-voluntario', 'estagioVoluntario')->name('estagio-voluntario');
     Route::get('/projetos', 'projetos')->name('projetos');
     Route::match(['POST', 'GET'], '/informativo/{id}', 'informativo')->name('informativo');
 });
@@ -57,9 +57,6 @@ Route::get('/publicacoes', function () {
     return view('publicacoes');
 })->name('publicacoes');
 
-Route::get('/estagio-voluntario', function () {
-    return view('estagio-voluntario');
-})->name('estagio-voluntario');
 
 Route::get('/contato', function () {
     return view('contato');

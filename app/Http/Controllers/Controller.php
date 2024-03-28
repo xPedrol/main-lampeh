@@ -117,23 +117,26 @@ class Controller
         return view('auth.forgotPassword');
     }
 
-    public function estagioVoluntario(Request $request): RedirectResponse
+    public function estagioVoluntario(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required'
+        if ($request->method() == 'POST') {
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required'
 
-        ]);
-        $body = "Email: " . $request['email'] . ".<br/><br/>";
-        $body .= $request['message'];
-        $details = [
-            'email' => $request['email'],
-            'subject' => 'Estágio Voluntário',
-            'title' => "Mensagem de " . $request['name'],
-            'body' => $body
-        ];
-        dispatch(new SendEmailJob($details));
-        return redirect()->back()->with('success', 'Mensagem enviada com sucesso!');
+            ]);
+            $body = "Email: " . $request['email'] . ".<br/><br/>";
+            $body .= $request['message'];
+            $details = [
+                'email' => $request['email'],
+                'subject' => 'Estágio Voluntário',
+                'title' => "Mensagem de " . $request['name'],
+                'body' => $body
+            ];
+            dispatch(new SendEmailJob($details));
+            return redirect()->back()->with('success', 'Mensagem enviada com sucesso!');
+        }
+        return view('estagio-voluntario');
     }
 
     public function projetos()
