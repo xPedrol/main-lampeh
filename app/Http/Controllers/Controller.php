@@ -85,19 +85,19 @@ class Controller
         }
         $res = $user->save();
         if ($res) {
-            $base_url = Config::get('app.env') === 'local' ? Config::get('app.app_url') . ":" . Config::get('app.app_port') : Config::get('app.app_url');
-            $encodedEmail = urlencode($user->email);
-            $tokenEncoded = urlencode($token);
-            $link = "$base_url/confirmar-email?email=$encodedEmail&token=$tokenEncoded";
-            $body = "Recebemos seu cadastro. Para utilizar sua conta é precisa verificar este email. Para isso, basta clicar no botão abaixo.<br/><br/>";
-            $body .= "<a href='$link' style='background-color: #212529; padding: 8px 8px; border: none; color: white; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;'>Confirmar Cadastro</a>";
-            $details = [
-                'email' => $user->email,
-                'subject' => 'Confirmação de Email',
-                'title' => "Olá, " . $user->name . ".",
-                'body' => $body
-            ];
-            dispatch(new SendEmailJob($details));
+//            $base_url = Config::get('app.env') === 'local' ? Config::get('app.app_url') . ":" . Config::get('app.app_port') : Config::get('app.app_url');
+//            $encodedEmail = urlencode($user->email);
+//            $tokenEncoded = urlencode($token);
+//            $link = "$base_url/confirmar-email?email=$encodedEmail&token=$tokenEncoded";
+//            $body = "Recebemos seu cadastro. Para utilizar sua conta é precisa verificar este email. Para isso, basta clicar no botão abaixo.<br/><br/>";
+//            $body .= "<a href='$link' style='background-color: #212529; padding: 8px 8px; border: none; color: white; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;'>Confirmar Cadastro</a>";
+//            $details = [
+//                'email' => $user->email,
+//                'subject' => 'Confirmação de Email',
+//                'title' => "Olá, " . $user->name . ".",
+//                'body' => $body
+//            ];
+//            dispatch(new SendEmailJob($details));
             return redirect()->route('login')->with('success', 'Usuário cadastrado com sucesso! Um link de confirmação foi enviado para seu email.');
         } else {
             return back()->with('error', 'Erro ao cadastrar');
@@ -130,7 +130,6 @@ class Controller
             $body .= $request['message'];
             $hostEmail = Config::get('app.mail_host');
             $details = [
-                'bcc' => $request['email'],
                 'email' => $hostEmail,
                 'subject' => 'Estágio Voluntário [LAMPEH]',
                 'title' => "Mensagem de " . $request['name'],
