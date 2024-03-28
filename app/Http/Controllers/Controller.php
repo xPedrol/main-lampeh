@@ -125,6 +125,7 @@ class Controller
                 'email' => 'required'
 
             ]);
+            require base_path("vendor/autoload.php");
             $body = "Email: " . $request['email'] . ".<br/><br/>";
             $body .= $request['message'];
             $hostEmail = Config::get('app.mail_host');
