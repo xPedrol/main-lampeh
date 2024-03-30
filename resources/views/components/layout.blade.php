@@ -89,7 +89,7 @@
         @endif
     </div>
 </div>
-<x-footer/>
+{{--<x-footer/>--}}
 <script src="{{ asset('js/app.js') }}" defer></script>
 
 {{$bAssets??''}}

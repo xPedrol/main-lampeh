@@ -3,9 +3,20 @@
         <link href="{{ asset('css/home.css') }}" rel="stylesheet">
         <link href="{{ asset('css/grid.css') }}" rel="stylesheet">
     </x-slot>
+    <x-slot name="bAssets">
+        <script src="{{asset('js/home.js')}}"></script>
+    </x-slot>
     <div class="card">
         <div class="carousel">
-            <img class="img-carousel" alt="" id="img-carousel" src="{{asset('/carousel/c1.jpeg')}}"/>
+            <div class="actions">
+                <button id="btn-prev" class="left" onclick="change_image(true)">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button id="btn-next" class="right" onclick="change_image(false)">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+            <img class="img-carousel" alt="" id="img-carousel" src="{{asset('/carousel/m/c1.jpeg')}}"/>
         </div>
         <h3 class="informativo-title roboto-condensed">Informativo</h3>
         <hr/>
@@ -23,14 +34,4 @@
             </div>
         @endforeach
     </div>
-    <script>
-        let i = 1;
-        img_carousel = document.getElementById('img-carousel')
-        let img_interval = setInterval(() => {
-            console.log(img_carousel)
-            if (i > 7) i = 1
-            img_carousel.src = `/carousel/c${i}.jpeg`
-            i++
-        }, 5000)
-    </script>
 </x-layout>

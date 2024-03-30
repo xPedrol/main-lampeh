@@ -15,6 +15,7 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/tinymce.js', 'public/js')
     .js('resources/js/navbar.js','public/js')
     .js('resources/js/projetos.js','public/js')
+    .js('resources/js/home.js','public/js')
 
 
 
