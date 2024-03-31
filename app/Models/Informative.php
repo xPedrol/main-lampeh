@@ -19,10 +19,8 @@ class Informative extends Model
     protected $fillable = [
         'created_at',
         'updated_at',
-        'link',
         'message',
         'title',
-        'expires_at'
     ];
     protected $table = 'informatives';
 
@@ -45,13 +43,6 @@ class Informative extends Model
     {
 
         $data = Carbon::parse($this->updated_at)->tz(Config::get('app.default_timezone'));
-        return $data->format('d/m/Y H:i') . ' - ' . $data->diffForHumans();
-    }
-
-    public function getFormatedExpiresAt()
-    {
-
-        $data = Carbon::parse($this->expires_at)->tz(Config::get('app.default_timezone'));
         return $data->format('d/m/Y H:i') . ' - ' . $data->diffForHumans();
     }
 }

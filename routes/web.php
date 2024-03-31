@@ -16,13 +16,14 @@ Route::controller(Controller::class)->group(function () {
 
     Route::middleware(EnsureAuthIsValid::class)->group(function () {
         Route::prefix('/admin')->group(function () {
-            Route::match(['POST', 'GET'], '/informativos', 'adminInformativos')->name('admin-informativos');
+            Route::match(['POST', 'GET'], '/informativos', 'admin_informativos')->name('admin-informativos');
+            Route::match('GET', '/deletar-infomativo/{id}', 'delete_informativo')->name('admin-delete-informativos');
         });
         Route::get('/sair', 'logout')->name('logout');
     });
 
     Route::get('/', 'home')->name('home');
-    Route::match(['GET', 'POST'], '/estagio-voluntario', 'estagioVoluntario')->name('estagio-voluntario');
+    Route::match(['GET', 'POST'], '/estagio-voluntario', 'estagio_voluntario')->name('estagio-voluntario');
     Route::get('/projetos', 'projetos')->name('projetos');
     Route::match(['POST', 'GET'], '/informativo/{id}', 'informativo')->name('informativo');
 });

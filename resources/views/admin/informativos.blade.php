@@ -1,6 +1,6 @@
 <x-layout :oneCol="true">
     <x-slot name="assets">
-{{--        <link href="{{ asset('css/tinymceTable.css') }}" rel="stylesheet">--}}
+        {{--        <link href="{{ asset('css/tinymceTable.css') }}" rel="stylesheet">--}}
         <link href="{{ asset('css/form.css') }}" rel="stylesheet">
         <script src="{{asset('js/tinymce.js')}}"></script>
     </x-slot>
@@ -20,17 +20,9 @@
                             <input id="title" name="title" type="text"/>
                         </div>
                         <div class="col-12">
-                            <label for="link">Link</label>
-                            <input id="link" name="link" type="text"/>
-                        </div>
-                        <div class="col-12">
-                            <label for="expires_at">Data de expiração</label>
-                            <input id="expires_at" name="expires_at" type="datetime-local"/>
-                        </div>
-                        <div class="col-12">
                             <label for="tinymce">Mensagem</label>
-{{--                            <textarea id="message" name="message" rows="4"></textarea>--}}
-                            <textarea id="tinymce"  name="message" rows="4"></textarea>
+                            {{--                            <textarea id="message" name="message" rows="4"></textarea>--}}
+                            <textarea id="tinymce" name="message" rows="4"></textarea>
                         </div>
 
                         <div class="col-12">
@@ -40,34 +32,33 @@
                 </form>
             </div>
         </div>
-        <table>
-            <thead>
-            <tr>
-                <th>Título</th>
-                <th>Link</th>
-                <th>Expira em</th>
-                <th>Mensagem</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($informatives as $informative)
+        <div class="responsive-table">
+            <table>
+                <thead>
                 <tr>
-                    <td>
-                        <p>{{$informative->title}}</p>
-                    </td>
-                    <td>
-                        <p class="truncate">{{$informative->link}}</p>
-                    </td>
-                    <td>
-                        <p>{{$informative->getFormatedExpiresAt()}}</p>
-                    </td>
-                    <td>
-                        <p class="truncate">{{$informative->message}}</p>
-                    </td>
+                    <th>Título</th>
+                    <th>Mensagem</th>
+                    <th></th>
                 </tr>
-            @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                @foreach($informatives as $informative)
+                    <tr>
+                        <td>
+                           {{$informative->title}}
+                        </td>
+                        <td>
+                            <p>{{$informative->message}}</p>
+                        </td>
+                        <td>
+                            <a href="{{route('admin-delete-informativos',['id'=>$informative->id])}}"
+                               class="btn delete-btn btn-sm" type="submit">Excluir</a>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
     <script>
         const form = document.getElementById('form-div');

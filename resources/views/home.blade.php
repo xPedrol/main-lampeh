@@ -26,11 +26,8 @@
         @foreach($informatives as $informative)
             <div class="informative mb-20">
                 <a href="{{route('informativo',['id'=>$informative->id])}}"><h5>{{$informative->title}}</h5></a>
-                @if(isset($informative->expires_at))
-                    <small>Disponivel até: {{$informative->getFormatedExpiresAt()}}</small>
-                @else
-                    <small>Criado em: {{$informative->getFormatedCreatedAt()}}</small>
-                @endif
+                <small>Criado em: {{$informative->getFormatedCreatedAt()}}</small>
+
             </div>
         @endforeach
     </div>

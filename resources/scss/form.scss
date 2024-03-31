@@ -11,7 +11,8 @@ main{
         font-size: 16px;
     }
 
-    button {
+    button, .btn {
+        text-decoration: none;
         cursor: pointer;
         border: none;
         padding: 10px;
@@ -21,11 +22,21 @@ main{
         float: right;
     }
     button:hover{
-        opacity: 0.8;
+        opacity: 0.6;
     }
     .tox-tinymce{
         margin-top: 5px !important;
         border-radius: 0 !important;
+    }
+    .delete-btn{
+        background-color: red;
+    }
+    .delete-btn:hover{
+        opacity: 0.6;
+    }
+    .btn-sm{
+        padding: 7px;
+        font-size: 15px;
     }
 
 }

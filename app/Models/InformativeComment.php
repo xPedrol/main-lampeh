@@ -21,7 +21,7 @@ class InformativeComment extends Model
         'updated_at',
         'name',
         'message',
-        'informativeId',
+        'informative_id',
     ];
     protected $table = 'informative_comments';
 

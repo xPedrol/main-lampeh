@@ -7,7 +7,7 @@
     <div class="card">
         <div class="mb-15">
             <h3>{{$informative->title}}</h3>
-            <small>{{$informative->getFormatedExpiresAt()}}</small>
+            <small>{{$informative->getFormatedCreatedAt()}}</small>
         </div>
         <hr/>
         <div class="mt-15">

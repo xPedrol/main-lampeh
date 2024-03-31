@@ -12,6 +12,3 @@ main h3 {
 main h3:first-child {
   margin-top: 0;
 }
-main a {
-  word-wrap: break-word;
-}

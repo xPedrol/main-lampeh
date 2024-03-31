@@ -8,7 +8,6 @@ use App\Models\Informative;
 use App\Models\InformativeComment;
 use App\Models\Project;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +18,7 @@ class Controller
 
     public function home()
     {
-        $informatives = Informative::orderBy('expires_at', 'asc')->orderBy('title', 'asc')->limit(7)->get();
+        $informatives = Informative::orderBy('created_at', 'desc')->orderBy('title', 'asc')->limit(7)->get();
         return view('home', ['informatives' => $informatives]);
     }
 
@@ -112,12 +111,12 @@ class Controller
         return redirect()->route('login');
     }
 
-    public function forgotPassword(Request $request)
+    public function forgot_password(Request $request)
     {
         return view('auth.forgotPassword');
     }
 
-    public function estagioVoluntario(Request $request)
+    public function estagio_voluntario(Request $request)
     {
         if ($request->method() == 'POST') {
             $request->validate([
@@ -147,7 +146,7 @@ class Controller
         return view('projetos', ['projects' => $projects]);
     }
 
-    public function adminInformativos(Request $request)
+    public function admin_informativos(Request $request)
     {
 //        return now();
         if ($request->method() == 'POST') {
@@ -156,23 +155,21 @@ class Controller
                 'title' => 'required'
 
             ]);
-            if ($request['expires_at']) {
-                $expires_at = Carbon::createFromFormat('Y-m-d\TH:i', $request['expires_at'], Config::get('app.default_timezone'))->setTimezone('UTC');
-            } else {
-                $expires_at = null;
-            }
+//            if ($request['expires_at']) {
+//                $expires_at = Carbon::createFromFormat('Y-m-d\TH:i', $request['expires_at'], Config::get('app.default_timezone'))->setTimezone('UTC');
+//            } else {
+//                $expires_at = null;
+//            }
             $informative = new Informative();
             $informative->title = $request['title'];
-            $informative->expires_at = $expires_at;
             $informative->message = $request['message'];
-            $informative->link = $request['link'];
             $informative->created_at = now();
             $informative->updated_at = now();
             $res = $informative->save();
             if ($res) return redirect()->back()->with('success', 'Informativo cadastrado com sucesso!');
             return redirect()->back()->with('error', 'Erro ao cadastrar informativo.');
         }
-        $informatives = Informative::orderBy('expires_at', 'asc')->orderBy('title', 'asc')->get();
+        $informatives = Informative::orderBy('created_at', 'asc')->orderBy('title', 'asc')->get();
         return view('admin.informativos', ['informatives' => $informatives]);
     }
 
@@ -187,7 +184,7 @@ class Controller
             $comment = new InformativeComment();
             $comment->name = trim($request['name']);
             $comment->message = trim($request['message']);
-            $comment->informativeId = $request->route('id');
+            $comment->informative_id = $request->route('id');
             $comment->created_at = $comment->updated_at = now();
 
             $res = $comment->save();
@@ -195,8 +192,28 @@ class Controller
             return redirect()->back()->with('error', 'Erro ao cadastrar comentário.');
         }
         $informative = Informative::find($request->route('id'));
-        $comments = InformativeComment::where('informativeId', $informative->id)->get();
+        $comments = InformativeComment::where('informative_id', $informative->id)->get();
         return view('informativo', ['informative' => $informative, 'comments' => $comments]);
+    }
+
+    public function delete_informativo(Request $request)
+    {
+        $informativo_id = $request->route('id');
+        if (!$informativo_id) return redirect()->back()->with('error', 'Chave inválida.');
+        $res = $this->delete_informativo_comments($informativo_id);
+        if ($res) {
+            $res = Informative::where('id', '=', $informativo_id)->delete();
+            if ($res) return redirect()->back()->with('success', 'Informativo deletado com sucesso!');
+        }
+        return redirect()->back()->with('error', 'Erro ao deletar  informativo.');
+    }
+
+    protected function delete_informativo_comments($informativo_id): bool
+    {
+        $count = InformativeComment::where('informative_id', '=', $informativo_id)->count();
+        if ($count == 0) return true;
+        $res = InformativeComment::where('informative_id', '=', $informativo_id)->delete();
+        return $res;
     }
 
 }

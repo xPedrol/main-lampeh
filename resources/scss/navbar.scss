@@ -1,6 +1,7 @@
 @import "breakpoints";
 
 header {
+    z-index: 3;
     background-color: white;
     width: 100%;
     display: flex;
@@ -8,6 +9,9 @@ header {
     position: relative;
 }
 .mobile-nav{
+    @include media-breakpoint-up(lg){
+        display: none;
+    }
     height: 100%;
     max-height: 0px;
     transition: 650ms ease-in-out;
@@ -27,6 +31,9 @@ header {
         width: 100%;
         border-bottom: 1px solid #e3e3e2;
 
+    }
+    .li-nav:last-child{
+        border-bottom: none;
     }
     a {
         font-size: 20px;
