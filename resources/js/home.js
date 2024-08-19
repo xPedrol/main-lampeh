@@ -23,7 +23,7 @@ const change_image = (prev) => {
         i++
     }
     i_cycle()
-    img_carousel.src = `/carousel/m/c${i}.jpeg`
+    img_carousel.src = `/carousel/webp/c${i}.webp`
     img_interval = init_interval()
 }
 

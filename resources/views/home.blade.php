@@ -16,7 +16,7 @@
                     <i class="fa-solid fa-chevron-right"></i>
                 </button>
             </div>
-            <img class="img-carousel" alt="" id="img-carousel" src="{{asset('/carousel/m/c1.jpeg')}}"/>
+            <img class="img-carousel" alt="" id="img-carousel" src="{{asset('/carousel/webp/c1.webp')}}"/>
         </div>
         <h3 class="informativo-title roboto-condensed">Informativo</h3>
         <hr/>
