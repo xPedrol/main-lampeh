@@ -251,4 +251,61 @@ class Controller
         return $res;
     }
 
+    public function fale_conosco(Request $request)
+    {
+        if($request->method() == 'GET'){
+            return view('fale-conosco');
+        }
+        if($request->method() == 'POST'){
+            $request->validate([
+                'email' => 'required|email',
+                'assunto' => 'required',
+                'nome' => 'required',
+                'texto' => 'required',
+                'g-recaptcha-response' => function ($attribute, $value, $fail) {
+                    $secretKey = config('services.recaptcha.secret');
+                    $response = $value;
+                    $userIP = $_SERVER['REMOTE_ADDR'];
+                    $URL = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIP";
+                    $response = \file_get_contents($URL);
+                    $response = json_decode($response);
+                    if (!$response->success) {
+                        Session::flash('reCAPTCHA','reCAPTCHA inválido');
+                        $fail($attribute.'reCAPTCHA inválido');
+                    }
+                }
+            ]);
+            $data = $request->only(['email', 'assunto', 'nome', 'texto']);
+            if ($data['email'] != 'sample@email.tst') {
+                $data['assunto'] = preg_replace(array("/(á|à|ã|â|ä)/", "/(Á|À|Ã|Â|Ä)/", "/(é|è|ê|ë)/", "/(É|È|Ê|Ë)/", "/(í|ì|î|ï)/", "/(Í|Ì|Î|Ï)/", "/(ó|ò|õ|ô|ö)/", "/(Ó|Ò|Õ|Ô|Ö)/", "/(ú|ù|û|ü)/", "/(Ú|Ù|Û|Ü)/", "/(ñ)/", "/(Ñ)/"), explode(" ", "a A e E i I o O u U n N"), $data['assunto']);
+                require base_path("vendor/autoload.php");
+
+                $subject = "Fale Conosco [LAMPEH]: " . $data['assunto'];
+                $body = "
+            <h4>E-mail enviado pelo Fale Conosco do site principal LAMPEH.</h4>
+
+            Nome: " . $data['nome'] . "<br/>
+            Email: " . $data['email'] . "<br/>
+            <br/>
+            Mensagem: <br/>"
+                    . $data['texto'] . "
+        ";
+                $hostEmail = Config::get('app.mail_host');
+                if ($hostEmail) {
+                    $details = [
+                        'bcc' => $data['email'],
+                        'email' => $hostEmail,
+                        'subject' => $subject,
+                        'body' => $body,
+                        'title' => ''
+                    ];
+                    dispatch(new SendEmailJob($details));
+                }
+                return back()->with("success", 'Mensagem enviada com sucesso!');
+            }
+            return back()->with("error", 'Erro ao enviar mensagem!');
+        }
+        return null;
+    }
+
 }

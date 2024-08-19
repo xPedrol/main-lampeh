@@ -3,17 +3,28 @@
         <link href="{{ asset('css/form.css') }}" rel="stylesheet">
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </x-slot>
-    <x-slot name="title">Estágio Voluntário</x-slot>
+    <x-slot name="title">Fale Conosco</x-slot>
     <div class="card">
-        <p class="mb-30">Preencha o formulário abaixo para se cadastrar como um voluntário do projeto</p>
-        <form action="{{route('estagio-voluntario')}}" method="POST">
+        <p class="mb-30">Preencha o formulário abaixo para enviar um email com sua dúvida.</p>
+        <form action="{{route('fale-conosco')}}" method="POST">
             @method('POST')
             @csrf
             <div class="grid form-control">
+                <div class="col-12 mb-10">
+                    <label for="assunto">Assunto</label>
+                    <input id="assunto" name="assunto" type="text" value="{{old("assunto")}}"/>
+                    <small>Digite o assunto a ser tratado em poucas palavras
+                    </small>
+                    @error('assunto')
+                    <div class="invalid-feedback">
+                        Campo inválido
+                    </div>
+                    @enderror
+                </div>
                 <div class="col-12">
-                    <label for="name">Nome Completo</label>
-                    <input id="name" name="name" type="text" value="{{old("name")}}"/>
-                    @error('name')
+                    <label for="nome">Nome Completo</label>
+                    <input id="nome" name="nome" type="text" value="{{old("nome")}}"/>
+                    @error('nome')
                     <div class="invalid-feedback">
                         Campo inválido
                     </div>
@@ -29,9 +40,9 @@
                     @enderror
                 </div>
                 <div class="col-12">
-                    <label for="message">Mensagem</label>
-                    <textarea id="message" name="message" rows="4">{{old("message")}}</textarea>
-                    @error('message')
+                    <label for="texto">Descrição detalhada</label>
+                    <textarea id="texto" name="texto" rows="4">{{old("texto")}}</textarea>
+                    @error('texto')
                     <div class="invalid-feedback">
                         Campo inválido
                     </div>

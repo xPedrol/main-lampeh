@@ -80,6 +80,16 @@ class Navbar extends Component
                 'title' => 'Contato',
                 'label' => 'contato',
                 'show' => true,
+                'children' => [
+                    [
+                        'title' => 'Endereço e Telefone',
+                        'label' => 'contato'
+                    ],
+                    [
+                        'title' => 'Fale conosco',
+                        'label' => 'fale-conosco'
+                    ]
+                ]
             ],
             [
                 'title' => 'Administrador',

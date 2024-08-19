@@ -24,6 +24,7 @@ Route::controller(Controller::class)->group(function () {
 
     Route::get('/', 'home')->name('home');
     Route::match(['GET', 'POST'], '/estagio-voluntario', 'estagio_voluntario')->name('estagio-voluntario');
+    Route::match(['GET', 'POST'], '/fale-conosco', 'fale_conosco')->name('fale-conosco');
     Route::get('/projetos', 'projetos')->name('projetos');
     Route::match(['POST', 'GET'], '/informativo/{id}', 'informativo')->name('informativo');
 });
