@@ -4,6 +4,12 @@ main{
         margin: 0 auto;
         row-gap: 10px !important;
     }
+    .invalid-feedback {
+        width: 100%;
+        margin-top: 0.25rem;
+        font-size: 0.875em;
+        color: #dc3545;
+    }
     input, textarea {
         margin: 5px 0;
         width: 100%;

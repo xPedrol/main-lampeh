@@ -12,6 +12,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Session;
 
 class Controller
 {
@@ -62,8 +63,19 @@ class Controller
             'email' => 'required',
             'password' => 'required',
             'confirmPassword' => 'required',
-            'name' => 'required'
-
+            'name' => 'required',
+            'g-recaptcha-response' => function ($attribute, $value, $fail) {
+                $secretKey = config('services.recaptcha.secret');
+                $response = $value;
+                $userIP = $_SERVER['REMOTE_ADDR'];
+                $URL = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIP";
+                $response = \file_get_contents($URL);
+                $response = json_decode($response);
+                if (!$response->success) {
+                    Session::flash('reCAPTCHA','reCAPTCHA inválido');
+                    $fail($attribute.'reCAPTCHA inválido');
+                }
+            }
         ]);
         if ($request['password'] !== $request['confirmPassword']) {
             return back()->with('error', 'As senhas não conferem');
@@ -121,7 +133,19 @@ class Controller
         if ($request->method() == 'POST') {
             $request->validate([
                 'name' => 'required',
-                'email' => 'required'
+                'email' => 'required',
+                'g-recaptcha-response' => function ($attribute, $value, $fail) {
+                    $secretKey = config('services.recaptcha.secret');
+                    $response = $value;
+                    $userIP = $_SERVER['REMOTE_ADDR'];
+                    $URL = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIP";
+                    $response = \file_get_contents($URL);
+                    $response = json_decode($response);
+                    if (!$response->success) {
+                        Session::flash('reCAPTCHA','reCAPTCHA inválido');
+                        $fail($attribute.'reCAPTCHA inválido');
+                    }
+                }
 
             ]);
             require base_path("vendor/autoload.php");
@@ -178,8 +202,19 @@ class Controller
         if ($request->method() == 'POST') {
             $request->validate([
                 'name' => 'required',
-                'message' => 'required'
-
+                'message' => 'required',
+                'g-recaptcha-response' => function ($attribute, $value, $fail) {
+                    $secretKey = config('services.recaptcha.secret');
+                    $response = $value;
+                    $userIP = $_SERVER['REMOTE_ADDR'];
+                    $URL = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIP";
+                    $response = \file_get_contents($URL);
+                    $response = json_decode($response);
+                    if (!$response->success) {
+                        Session::flash('reCAPTCHA','reCAPTCHA inválido');
+                        $fail($attribute.'reCAPTCHA inválido');
+                    }
+                }
             ]);
             $comment = new InformativeComment();
             $comment->name = trim($request['name']);

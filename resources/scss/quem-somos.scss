@@ -20,4 +20,9 @@ main {
             border: 3px solid #47535d;
         }
     }
+    .comments-grid{
+        overflow: auto;
+        max-height: 700px;
+        padding-right: 10px;
+    }
 }

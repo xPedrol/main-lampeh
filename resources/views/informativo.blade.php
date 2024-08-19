@@ -2,6 +2,7 @@
     <x-slot name="assets">
         <link href="{{ asset('css/quem-somos.css') }}" rel="stylesheet">
         <link href="{{ asset('css/form.css') }}" rel="stylesheet">
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </x-slot>
     <x-slot name="title">Detalhes da postagem</x-slot>
     <div class="card">
@@ -19,7 +20,7 @@
         @if(count($comments) == 0)
             <p class="text-center">Sem registros</p>
         @endif
-        <div class="grid mb-15 gap-25">
+        <div class="grid mb-15 gap-25 comments-grid">
             @foreach($comments as $comment)
                 <div class="col-12 comment d-flex gap-10">
                     <div>
@@ -42,10 +43,28 @@
             @csrf
             <div class="grid gap-5 mt-15">
                 <div class="col-12">
-                    <input id="name" name="name" placeholder="Escreva seu nome..."/>
+                    <input id="name" name="name" placeholder="Escreva seu nome..." value="{{old("name")}}"/>
+                    @error('name')
+                    <div class="invalid-feedback">
+                        Campo inválido
+                    </div>
+                    @enderror
                 </div>
                 <div class="col-12">
-                    <textarea id="message" name="message" placeholder="Escreva um comentário..." rows="3"></textarea>
+                    <textarea id="message" name="message" placeholder="Escreva um comentário..." rows="3">{{old("message")}}</textarea>
+                    @error('message')
+                    <div class="invalid-feedback">
+                        Campo inválido
+                    </div>
+                    @enderror
+                </div>
+                <div class="col-12">
+                    <div class="g-recaptcha mb-15" data-sitekey="{{config('services.recaptcha.key')}}"></div>
+                    @if(Session::has('reCAPTCHA'))
+                        <div class="alert alert-danger mb-0" role="alert">
+                            {{Session::get('reCAPTCHA')}}
+                        </div>
+                    @endif
                 </div>
                 <div class="col-12">
                     <button type="submit">Enviar</button>
