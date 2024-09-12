@@ -71,8 +71,7 @@ class Controller
                 $URL = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIP";
                 $response = \file_get_contents($URL);
                 $response = json_decode($response);
-                if (!$response->success) {
-                    Session::flash('reCAPTCHA','reCAPTCHA inválido');
+                if (!$response->success || $response->score <=  config('services.recaptcha.score')) {
                     $fail($attribute.'reCAPTCHA inválido');
                 }
             }
@@ -141,8 +140,7 @@ class Controller
                     $URL = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIP";
                     $response = \file_get_contents($URL);
                     $response = json_decode($response);
-                    if (!$response->success) {
-                        Session::flash('reCAPTCHA','reCAPTCHA inválido');
+                    if (!$response->success || $response->score <=  config('services.recaptcha.score')) {
                         $fail($attribute.'reCAPTCHA inválido');
                     }
                 }
@@ -210,8 +208,7 @@ class Controller
                     $URL = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIP";
                     $response = \file_get_contents($URL);
                     $response = json_decode($response);
-                    if (!$response->success) {
-                        Session::flash('reCAPTCHA','reCAPTCHA inválido');
+                    if (!$response->success || $response->score <=  config('services.recaptcha.score')) {
                         $fail($attribute.'reCAPTCHA inválido');
                     }
                 }
@@ -269,8 +266,7 @@ class Controller
                     $URL = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIP";
                     $response = \file_get_contents($URL);
                     $response = json_decode($response);
-                    if (!$response->success) {
-                        Session::flash('reCAPTCHA','reCAPTCHA inválido');
+                    if (!$response->success || $response->score <=  config('services.recaptcha.score')) {
                         $fail($attribute.'reCAPTCHA inválido');
                     }
                 }

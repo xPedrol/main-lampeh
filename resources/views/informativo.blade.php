@@ -2,6 +2,11 @@
     <x-slot name="assets">
         <link href="{{ asset('css/quem-somos.css') }}" rel="stylesheet">
         <link href="{{ asset('css/form.css') }}" rel="stylesheet">
+        <script>
+            function onSubmit() {
+                document.getElementById("informativo-form").submit();
+            }
+        </script>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </x-slot>
     <x-slot name="title">Detalhes da postagem</x-slot>
@@ -38,7 +43,7 @@
             @endforeach
         </div>
         <hr/>
-        <form action="{{route('informativo',['id'=>$informative->id])}}" method="POST">
+        <form id="informativo-form" action="{{route('informativo',['id'=>$informative->id])}}" method="POST">
             @method('POST')
             @csrf
             <div class="grid gap-5 mt-15">
@@ -59,15 +64,10 @@
                     @enderror
                 </div>
                 <div class="col-12">
-                    <div class="g-recaptcha mb-15" data-sitekey="{{config('services.recaptcha.key')}}"></div>
-                    @if(Session::has('reCAPTCHA'))
-                        <div class="alert alert-danger mb-0" role="alert">
-                            {{Session::get('reCAPTCHA')}}
-                        </div>
-                    @endif
-                </div>
-                <div class="col-12">
-                    <button type="submit">Enviar</button>
+                    <button class="g-recaptcha" type="button"
+                            data-sitekey="{{config('services.recaptcha.key')}}"
+                            data-callback='onSubmit'
+                            data-action='submit'>Enviar</button>
                 </div>
             </div>
         </form>

@@ -1,12 +1,17 @@
 <x-layout>
     <x-slot name="assets">
         <link href="{{ asset('css/form.css') }}" rel="stylesheet">
+        <script>
+            function onSubmit() {
+                document.getElementById("estagio-voluntario-form").submit();
+            }
+        </script>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </x-slot>
     <x-slot name="title">Estágio Voluntário</x-slot>
     <div class="card">
         <p class="mb-30">Preencha o formulário abaixo para se cadastrar como um voluntário do projeto</p>
-        <form action="{{route('estagio-voluntario')}}" method="POST">
+        <form id="estagio-voluntario-form" action="{{route('estagio-voluntario')}}" method="POST">
             @method('POST')
             @csrf
             <div class="grid form-control">
@@ -38,15 +43,10 @@
                     @enderror
                 </div>
                 <div class="col-12">
-                    <div class="g-recaptcha mb-15" data-sitekey="{{config('services.recaptcha.key')}}"></div>
-                    @if(Session::has('reCAPTCHA'))
-                        <div class="alert alert-danger mb-0" role="alert">
-                            {{Session::get('reCAPTCHA')}}
-                        </div>
-                    @endif
-                </div>
-                <div class="col-12">
-                    <button>Enviar</button>
+                    <button class="g-recaptcha" type="button"
+                            data-sitekey="{{config('services.recaptcha.key')}}"
+                            data-callback='onSubmit'
+                            data-action='submit'>Enviar</button>
                 </div>
             </div>
         </form>
