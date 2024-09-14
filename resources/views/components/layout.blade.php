@@ -55,6 +55,11 @@
                             </a>
                         </div>
                         <div class="banner">
+                            <a target="_blank" href="https://www.arquivopontenova.lampeh.ufv.br">
+                                Projeto Arquivo Câmara Municipal <br/>de Ponte Nova
+                            </a>
+                        </div>
+                        <div class="banner">
                             <a target="_blank" href="https://posarqueologia.ufv.br">
                                 Curso de Especialização em Arqueologia
                             </a>
