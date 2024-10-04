@@ -59,7 +59,7 @@ class Controller
 
     public function registering(Request $request)
     {
-        if($request->get('trap')) return redirect()->route('register');
+        if($request->get('trap')) return redirect()->route('home');
         $request->validate([
             'email' => 'required',
             'password' => 'required',
@@ -131,7 +131,7 @@ class Controller
     public function estagio_voluntario(Request $request)
     {
         if ($request->method() == 'POST') {
-            if($request->get('trap')) return redirect()->route('register');
+            if($request->get('trap')) return redirect()->route('home');
             $request->validate([
                 'name' => 'required',
                 'email' => 'required',
@@ -200,7 +200,7 @@ class Controller
     public function informativo(Request $request)
     {
         if ($request->method() == 'POST') {
-            if($request->get('trap')) return redirect()->route('register');
+            if($request->get('trap')) return redirect()->route('home');
             $request->validate([
                 'name' => 'required',
                 'message' => 'required',
@@ -257,7 +257,7 @@ class Controller
             return view('fale-conosco');
         }
         if($request->method() == 'POST'){
-            if($request->get('trap')) return redirect()->route('register');
+            if($request->get('trap')) return redirect()->route('home');
             $request->validate([
                 'email' => 'required|email',
                 'assunto' => 'required',
