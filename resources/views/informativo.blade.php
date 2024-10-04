@@ -44,6 +44,7 @@
         </div>
         <hr/>
         <form id="informativo-form" action="{{route('informativo',['id'=>$informative->id])}}" method="POST">
+            <input class="d-none" id="trap" name="trap" type="text">
             @method('POST')
             @csrf
             <div class="grid gap-5 mt-15">

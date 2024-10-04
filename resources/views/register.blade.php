@@ -12,6 +12,7 @@
     <x-slot name="title">Registrar</x-slot>
     <div class="card">
         <form id="register-form" action="{{route('registering')}}" method="POST">
+            <input class="d-none" id="trap" name="trap" type="text">
             @method('POST')
             @csrf
             <div class="grid form-control">
