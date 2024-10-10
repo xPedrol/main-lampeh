@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\Route;
 Route::controller(Controller::class)->group(function () {
     Route::middleware(EnsureAuthIsNotValid::class)->group(function () {
         Route::get('/entrar', 'login')->name('login');
-        Route::get('/registrar', 'register')->name('register');
-        Route::post('/entrando', 'logging')->name('logging');
-        Route::post('/registrando', 'registering')->name('registering');
+        Route::middleware(['throttle:7,20'])->group(function () {
+            Route::get('/registrar', 'register')->name('register');
+            Route::post('/entrando', 'logging')->name('logging');
+            Route::post('/registrando', 'registering')->name('registering');
+        });
     });
 
 
@@ -23,8 +25,13 @@ Route::controller(Controller::class)->group(function () {
     });
 
     Route::get('/', 'home')->name('home');
-    Route::match(['GET', 'POST'], '/estagio-voluntario', 'estagio_voluntario')->name('estagio-voluntario');
-    Route::match(['GET', 'POST'], '/fale-conosco', 'fale_conosco')->name('fale-conosco');
+    Route::middleware(['throttle:5,20'])->group(function () {
+        Route::post('/estagio-voluntario', 'estagio_voluntario')->name('estagio-voluntario');
+        Route::post('/fale-conosco', 'fale_conosco')->name('fale-conosco');
+    });
+    Route::get('/estagio-voluntario', 'estagio_voluntario')->name('estagio-voluntario');
+    Route::get('/fale-conosco', 'fale_conosco')->name('fale-conosco');
+
     Route::get('/projetos', 'projetos')->name('projetos');
     Route::match(['POST', 'GET'], '/informativo/{id}', 'informativo')->name('informativo');
 });
