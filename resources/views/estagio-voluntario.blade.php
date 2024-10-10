@@ -11,7 +11,7 @@
     <x-slot name="title">Estágio Voluntário</x-slot>
     <div class="card">
         <p class="mb-30">Preencha o formulário abaixo para se cadastrar como um voluntário do projeto</p>
-        <form id="estagio-voluntario-form" action="{{route('estagio-voluntario')}}" method="POST">
+        <form id="estagio-voluntario-form" action="{{route('estagio-voluntario-post')}}" method="POST">
             <input class="d-none" id="trap" name="trap" type="text">
             @method('POST')
             @csrf

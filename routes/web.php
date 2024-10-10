@@ -26,8 +26,8 @@ Route::controller(Controller::class)->group(function () {
 
     Route::get('/', 'home')->name('home');
     Route::middleware(['throttle:5,20'])->group(function () {
-        Route::post('/estagio-voluntario', 'estagio_voluntario')->name('estagio-voluntario');
-        Route::post('/fale-conosco', 'fale_conosco')->name('fale-conosco');
+        Route::post('/estagio-voluntario', 'estagio_voluntario')->name('estagio-voluntario-post');
+        Route::post('/fale-conosco', 'fale_conosco')->name('fale-conosco-post');
     });
     Route::get('/estagio-voluntario', 'estagio_voluntario')->name('estagio-voluntario');
     Route::get('/fale-conosco', 'fale_conosco')->name('fale-conosco');

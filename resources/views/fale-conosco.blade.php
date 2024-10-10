@@ -11,7 +11,7 @@
     <x-slot name="title">Fale Conosco</x-slot>
     <div class="card">
         <p class="mb-30">Preencha o formulário abaixo para enviar um email com sua dúvida.</p>
-        <form id="contact-form" action="{{route('fale-conosco')}}" method="POST">
+        <form id="contact-form" action="{{route('fale-conosco-post')}}" method="POST">
             <input class="d-none" id="trap" name="trap" type="text">
             @method('POST')
             @csrf
