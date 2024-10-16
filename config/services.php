@@ -34,6 +34,9 @@ return [
         'secret' => env('GOOGLE_RECAPTCH_SECRET'),
         'key' => env('GOOGLE_RECAPTCH_KEY'),
         'score' => env('GOOGLE_RECAPTCH_SCORE'),
+    ],
+    'trap'=>[
+        'url'=>env('SPAM_REDIRECT_URL')
     ]
 
 ];
